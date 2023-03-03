@@ -1,0 +1,103 @@
+CRAETE DATABASE TESTDB;
+Query OK, 1 row affected (0.01 sec)
+mysql> USE TESTDB;
+Database changed
+mysql> CREATE TABLE PARENT(parentid int unique not null,parent_name varchar(30),city varchar(30),age int,annual_income int,occupation varchar(30),email_id varchar(30));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> UPDATE tblParent set email="NA";
+Query OK, 18 rows affected (0.01 sec)
+Rows matched: 18  Changed: 18  Warnings: 0
+
+mysql> select * from tblparent;
++----------+--------------+------+------------+---------------+---------------------+-------+
+| parentid | parentname   | age  | city       | annual_income | occupation          | email |
++----------+--------------+------+------------+---------------+---------------------+-------+
+|        1 | vasavt       |   39 | ahmadabad  |         40000 | contarctor          | NA    |
+|        3 | ramarav      |   41 | hydrabad   |         60000 | proffesor           | NA    |
+|        5 | pratap v     |   58 | delhi      |        180000 | manager             | NA    |
+|        6 | mavin        |   38 | aurangabad |         80000 | doctor              | NA    |
+|        7 | ravin        |   38 | hydrabad   |         80000 | professor           | NA    |
+|        8 | dipak        |   38 | mumbai     |         68000 | engineer            | NA    |
+|        9 | rohan        |   33 | ahmadabad  |         91000 | chemist             | NA    |
+|       10 | harshal      |   35 | ahmadabad  |         65000 | lawyer              | NA    |
+|       11 | tushar       |   51 | kolkata    |         62000 | doctor              | NA    |
+|       12 | rachit kumar |   46 | hydrabad   |         70000 | doctor              | NA    |
+|       13 | pavan        |   38 | pune       |         54000 | inspector           | NA    |
+|       14 | anand        |   55 | aurangabad |         38000 | farmer              | NA    |
+|       15 | pritam       |   36 | mumbai     |         68000 | teacher             | NA    |
+|       16 | pravin       |   37 | bangaluru  |         80000 | professorr          | NA    |
+|       17 | namesh       |   38 | kolkata    |         65000 | forester            | NA    |
+|       18 | purushottam  |   48 | delhi      |         48000 | teacher             | NA    |
+|       19 | gopal v      |   38 | nashik     |         89000 | mechanical engineer | NA    |
+|       20 | dhananjaya   |   45 | delhi      |         84000 | contrator           | NA    |
++----------+--------------+------+------------+---------------+---------------------+-------+
+18 rows in set (0.00 sec)
+
+mysql> select count(annual_income) from tblparent where annual_income*12>600000;
++----------------------+
+| count(annual_income) |
++----------------------+
+|                   15 |
++----------------------+
+1 row in set (0.01 sec)
+
+
+
+mysql> select * from tblParent where city='ahmadabad' or city='delhi' or city='mumbai' or city='chennai' or city='bangaluru';
++----------+-------------+------+-----------+---------------+------------+-------+
+| parentid | parentname  | age  | city      | annual_income | occupation | email |
++----------+-------------+------+-----------+---------------+------------+-------+
+|        1 | vasavt      |   39 | ahmadabad |         40000 | contarctor | NA    |
+|        5 | pratap v    |   58 | delhi     |        180000 | manager    | NA    |
+|        8 | dipak       |   38 | mumbai    |         68000 | engineer   | NA    |
+|        9 | rohan       |   33 | ahmadabad |         91000 | chemist    | NA    |
+|       10 | harshal     |   35 | ahmadabad |         65000 | lawyer     | NA    |
+|       15 | pritam      |   36 | mumbai    |         68000 | teacher    | NA    |
+|       16 | pravin      |   37 | bangaluru |         80000 | professorr | NA    |
+|       18 | purushottam |   48 | delhi     |         48000 | teacher    | NA    |
+|       20 | dhananjaya  |   45 | delhi     |         84000 | contrator  | NA    |
++----------+-------------+------+-----------+---------------+------------+-------+
+9 rows in set (0.00 sec)
+
+
+mysql> select * from tblParent where annual_income*12<500000;
++----------+------------+------+------------+---------------+------------+-------+
+| parentid | parentname | age  | city       | annual_income | occupation | email |
++----------+------------+------+------------+---------------+------------+-------+
+|        1 | vasavt     |   39 | ahmadabad  |         40000 | contarctor | NA    |
+|       14 | anand      |   55 | aurangabad |         38000 | farmer     | NA    |
++----------+------------+------+------------+---------------+------------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql> select  * from tblParent where age>45;
++----------+--------------+------+------------+---------------+------------+-------+
+| parentid | parentname   | age  | city       | annual_income | occupation | email |
++----------+--------------+------+------------+---------------+------------+-------+
+|        5 | pratap v     |   58 | delhi      |        180000 | manager    | NA    |
+|       11 | tushar       |   51 | kolkata    |         62000 | doctor     | NA    |
+|       12 | rachit kumar |   46 | hydrabad   |         70000 | doctor     | NA    |
+|       14 | anand        |   55 | aurangabad |         38000 | farmer     | NA    |
+|       18 | purushottam  |   48 | delhi      |         48000 | teacher    | NA    |
++----------+--------------+------+------------+---------------+------------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+6. create table students(
+    -> sid int not null auto_increment primary key,sname varchar(200),math int,science int,pid int, foreign key(pid) references tbiparent(parentid));
+Query OK, 0 rows affected (0.07 sec)
+
+ select*from students;
++-----+-----------+------+---------+------+
+| sid | sname     | math | science | pid  |
++-----+-----------+------+---------+------+
+| 101 | vijaydev  |   62 |      68 |  1   |
+| 102 | ravikant  |   53 |      40 |  2   |
+| 103 | arundhati |   52 |      39 |  3   |
+| 104 | abhishekk |   52 |      39 |  6   |
++-----+-----------+------+---------+------+
+4 rows in set (0.00 sec)
